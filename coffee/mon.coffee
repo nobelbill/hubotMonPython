@@ -21,5 +21,9 @@ module.exports = (robot) ->
     msg.send "python mon"
 
   robot.respond /CPU$/i, (msg) ->
-    mon.get pyurl -> (err,res,body)
-      msg.send body
+    msg.http("http://127.0.0.1:")
+    .get() (err, res, body) ->
+      slogan = body.replace /<.*?>/g, ""
+      msg.send slogan unless err
+
+
