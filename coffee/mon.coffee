@@ -29,3 +29,10 @@ module.exports = (robot) ->
     .get() (err, res, body) ->
       slogan = body
       msg.send slogan
+
+
+  robot.respond /BOOK$/i, (msg) ->
+    msg.http("http://127.0.0.1:5000/book")
+    .get() (err, res, body) ->
+      slogan = body
+      msg.send slogan
