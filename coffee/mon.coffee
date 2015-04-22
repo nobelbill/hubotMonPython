@@ -1,5 +1,3 @@
-pyurl = "http://127.0.0.1:8080/cpu"
-
 module.exports = (robot) ->
   robot.respond /PING$/i, (msg) ->
     msg.send "PONG"
@@ -21,9 +19,13 @@ module.exports = (robot) ->
     msg.send "python mon"
 
   robot.respond /CPU$/i, (msg) ->
-    msg.http("http://127.0.0.1:")
+    msg.http("http://127.0.0.1:5000/cpu")
     .get() (err, res, body) ->
       slogan = body
-      msg.send slogan unless err
+      msg.send slogan
 
-
+  robot.respond /MEMORY$/i, (msg) ->
+    msg.http("http://127.0.0.1:5000/memory")
+    .get() (err, res, body) ->
+      slogan = body
+      msg.send slogan
